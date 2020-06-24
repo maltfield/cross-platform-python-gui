@@ -73,13 +73,51 @@ ${PYTHON_PATH} -m pip install --upgrade --user PyInstaller
 mkdir pyinstaller
 pushd pyinstaller
 
-${PYTHON_PATH} -m PyInstaller -y --clean --windowed --name ${APP_NAME} \
-  --hidden-import 'pkg_resources.py2_warn' \
-  --exclude-module _tkinter \
-  --exclude-module Tkinter \
-  --exclude-module enchant \
-  --exclude-module twisted \
-  ../src/main.py
+cat >> ${APP_NAME}.spec <<EOF
+# -*- mode: python ; coding: utf-8 -*-
+
+block_cipher = None
+
+
+a = Analysis(['../src/main.py'],
+             pathex=['./'],
+             binaries=[],
+             datas=[],
+             hiddenimports=['pkg_resources.py2_warn'],
+             hookspath=[],
+             runtime_hooks=[],
+             excludes=['_tkinter', 'Tkinter', 'enchant', 'twisted'],
+             win_no_prefer_redirects=False,
+             win_private_assemblies=False,
+             cipher=block_cipher,
+             noarchive=False)
+pyz = PYZ(a.pure, a.zipped_data,
+             cipher=block_cipher)
+exe = EXE(pyz,
+          a.scripts,
+          [],
+          exclude_binaries=True,
+          name='${APP_NAME}',
+          debug=False,
+          bootloader_ignore_signals=False,
+          strip=False,
+          upx=True,
+          console=False )
+coll = COLLECT(exe, Tree('../src/'),
+               a.binaries,
+               a.zipfiles,
+               a.datas,
+               strip=False,
+               upx=True,
+               upx_exclude=[],
+               name='${APP_NAME}')
+app = BUNDLE(coll,
+             name='${APP_NAME}.app',
+             icon=None,
+             bundle_identifier=None)
+EOF
+
+${PYTHON_PATH} -m PyInstaller -y --clean --windowed "${APP_NAME}.spec"
 
 pushd dist
 hdiutil create ./${APP_NAME}.dmg -srcfolder ${APP_NAME}.app -ov
