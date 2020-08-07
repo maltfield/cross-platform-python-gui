@@ -1,0 +1,197 @@
+<HomeScreen>:
+    id: mainlayout
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    ScrollView:
+        size_hint_x: 0.9
+        size_hint_y: 0.7
+        pos_hint: {'center_x': .5, 'center_y': .5}
+        do_scroll_y: True
+        GridLayout:
+            id: maingrid
+            name: "homeScreen"
+            cols: 3
+            padding: 0
+            spacing: 20,20
+            size_hint_y: None
+            height: self.minimum_height
+    Button:
+        background_normal: 'skin10.png'
+        background_down: 'skin10.png'
+        size_hint_x: 0.15
+        size_hint_y: 0.085
+        pos_hint: {'x': 0.83, 'y':0.02}
+        on_release: root.callback()
+<ProjScreen>:
+    name: "projScreen"
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    ScrollView:
+        id:scrollWindow
+        name: "projScreen"
+        do_scroll_x: False
+        do_scroll_y: True
+        size_hint_x: 0.9
+        size_hint_y: 0.7
+        pos_hint: {'center_x': .5, 'center_y': .5}
+        GridLayout:
+            id: grid
+            size_hint_y: None
+            row_force_default: True
+            row_default_height: 100
+            col_default_width: 100
+            cols: 5
+            spacing: 20,20
+            height: self.minimum_height
+
+    Button:
+        id: mainbutton
+        size_hint_x: 0.185
+        background_normal: 'skin7.png'
+        background_down: 'skin7.png'
+        size_hint_y: 0.089
+        pos_hint: {'x':0.76, 'y':0.04}
+        on_release: root.dropdown.open(self)
+    Button:
+        id: backbutton
+        background_normal: 'skin6.png'
+        background_down: 'skin6.png'
+        size_hint: (0.1, 0.072)
+        pos_hint: {'x':0.05, 'y':0.92}
+        on_release:
+            root.remove_widget(root.titlelabel)
+            root.manager.transition.direction = 'right'
+            root.manager.current = 'homeScreen'
+    Button:
+        id: render
+        size_hint: (0.25,0.1)
+        background_normal: 'skin1.png'
+        pos_hint: {'x':0.04, 'y':0.03}
+        on_release:
+            root.testProgressBar()
+            #root.run_main()
+    #Button:
+        #id: select
+        #text: "Select All"
+        #size_hint_x: 0.15
+        #size_hint_y: 0.055
+        #pos_hint: {'right':1, 'top':1}
+        #add logic for selecting all videos
+
+<Manager>:
+    id: screen_manager
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    home_screen: home_screen
+    proj_screen: proj_screen
+    vid_screen: vid_screen
+
+    HomeScreen:
+        id: home_screen
+        name: 'homeScreen'
+        manager: screen_manager
+
+    ProjScreen:
+        id: proj_screen
+        name: 'projScreen'
+        manager: screen_manager
+
+    VidScreen:
+        id: vid_screen
+        name: 'vidScreen'
+        manager: screen_manager
+
+<Popup>:
+    size_hint: (None, None)
+    size: (400, 400)
+
+<VideoPlayer>:
+    allow_stretch: True
+
+<Button>:
+    height: '100sp'
+    size_hint_y: None
+
+# <FloatLayout>:
+#     id: mainlayout
+
+<CustomButton@Button>:
+    image_source: ''
+    background_normal: 'skin8.png'
+    BoxLayout:
+        orientation: 'horizontal'
+        id: 'grid1'
+        height: self.parent.height
+        width: 50
+        pos: self.parent.pos
+        #cols: 1
+        Button:
+            #background_normal: 'skin5.png'
+            text: 'x'
+            size_hint: (0.01, 0.085)
+            pos_hint: {'right':1, 'top':1}
+            on_release: root.vidDropdown.open(self)
+
+<CustomProjectButton@Button>:
+    background_normal: 'skin8.png'
+    BoxLayout:
+        orientation: 'horizontal'
+        id: 'grid1'
+        height: self.parent.height
+        width: 100
+        pos: self.parent.pos
+        Button:
+            text: 'x'
+            size_hint: (0.01, 0.085)
+            pos_hint: {'right':1, 'top':1}
+            on_release: root.vidDropdown.open(self)
+
+<CustomDropDown>:
+    auto_width: False
+    width: 200
+    Button:
+        id: videoButton
+        text: 'Upload Video'
+        height: 44
+        size_hint_y: None
+        on_release: root.select('Video selected')
+    Button:
+        id: folderButton
+        text: 'Upload Folder'
+        height: 44
+        size_hint_y: None
+        on_release: root.select('Folder selected')
+
+<ProjectCreator>:
+    orientation: 'vertical'
+
+
+<FileChooser>:
+    id: widget
+    orientation: 'vertical'
+
+    BoxLayout:
+        FileChooserIconView:
+            id: filechooser
+            dirselect: True
+
+<Logo>:
+    orientation: 'horizontal'
+    BoxLayout:
+        padding: 5
+        Image:
+            source: 'vmet_opus-06.png'
+            pos_hint: {'top':1, 'left':1}
+            size_hint_y: 0.1
