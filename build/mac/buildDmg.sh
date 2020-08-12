@@ -56,15 +56,15 @@ brew reinstall sdl2 sdl2_image sdl2_ttf sdl2_mixer
 
 # setup a virtualenv to isolate our app's python depends
 sudo ${PYTHON_PATH} -m ensurepip
-${PYTHON_PATH} -m pip install --upgrade --user pip setuptools
+${PYTHON_PATH} -m pip install --upgrade --force-reinstall --user pip setuptools
 #${PYTHON_PATH} -m pip install --upgrade --user virtualenv
 #${PYTHON_PATH} -m virtualenv /tmp/kivy_venv
 
 # install kivy and all other python dependencies with pip into our virtual env
 #source /tmp/kivy_venv/bin/activate
-${PYTHON_PATH} -m pip install --upgrade --user Cython==0.29.10
-${PYTHON_PATH} -m pip install --upgrade --user -r requirements.txt
-${PYTHON_PATH} -m pip install --upgrade --user PyInstaller
+${PYTHON_PATH} -m pip install --upgrade --force-reinstall --user Cython==0.29.10
+${PYTHON_PATH} -m pip install --upgrade --force-reinstall --user -r requirements.txt
+${PYTHON_PATH} -m pip install --upgrade --force-reinstall --user PyInstaller
 
 #####################
 # PYINSTALLER BUILD #
