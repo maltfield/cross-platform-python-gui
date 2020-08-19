@@ -46,12 +46,11 @@ source /tmp/kivy_venv/bin/activate; python -m pip install -r requirements.txt
 # PREPARE APPDIR #
 ##################
 
-# download the latest python-appimage release, which is an AppImage containing
-# the core python3.7 runtime. We use this as a base for building our own python
+# We use this python-appimage release as a base for building our own python
 # AppImage. We only have to add our code and depends to it.
-wget -O /tmp/python3.7.AppImage https://github.com/niess/python-appimage/releases/download/python3.7/python3.7.7-cp37-cp37m-manylinux2014_x86_64.AppImage
-chmod +x /tmp/python3.7.AppImage
-/tmp/python3.7.AppImage --appimage-extract
+cp build/deps/python3.7.8-cp37-cp37m-manylinux2014_x86_64.AppImage /tmp/python.AppImage
+chmod +x /tmp/python.AppImage
+/tmp/python.AppImage --appimage-extract
 mv squashfs-root /tmp/kivy_appdir
 
 # copy depends that were installed with kivy into our kivy AppDir
@@ -111,7 +110,7 @@ chmod +x /tmp/kivy_appdir/AppRun
 ##################
 
 # create the AppImage from kivy AppDir
-wget -O /tmp/appimagetool.AppImage https://github.com/AppImage/AppImageKit/releases/download/12/appimagetool-x86_64.AppImage
+cp build/deps/appimagetool-x86_64.AppImage /tmp/appimagetool.AppImage
 chmod +x /tmp/appimagetool.AppImage
 
 # create the dist dir for our result to be uploaded as an artifact
