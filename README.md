@@ -17,6 +17,12 @@ This project uses [kivy](https://kivy.org/), which also supports android and iOS
 
 When you push git commits to github on master, github will automatically spin up containers in the cloud and build your application's executables for all target platforms.
 
+# Try it out
+
+Checkout our [Releases Section](https://github.com/maltfield/cross-platform-python-gui/releases) to download and run the self-contained `Hello World` executables for Linux, Windows, and MacOS that were built by this repo.
+
+ * [https://github.com/maltfield/cross-platform-python-gui/releases](https://github.com/maltfield/cross-platform-python-gui/releases)
+
 # License
 
 The contents of this repo are dual-licensed. All code is GPLv3 and all other content is CC-BY-SA.
