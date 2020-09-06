@@ -34,17 +34,20 @@ which python
 which python3.7
 
 # setup a virtualenv to isolate our app's python depends
-${PYTHON_PATH} -m pip install --upgrade --user pip setuptools
-${PYTHON_PATH} -m pip install --upgrade --user virtualenv
-${PYTHON_PATH} -m virtualenv /tmp/kivy_venv
+#${PYTHON_PATH} -m pip install --upgrade --user pip setuptools
+#${PYTHON_PATH} -m pip install --upgrade --user virtualenv
+#${PYTHON_PATH} -m virtualenv /tmp/kivy_venv
 
 # install kivy and all other python dependencies with pip into our virtual env
 # we'll later add these to our AppDir for building the AppImage
-source /tmp/kivy_venv/bin/activate; python -m pip install -r requirements.txt
+#source /tmp/kivy_venv/bin/activate; python -m pip install -r requirements.txt
 
 ##################
 # PREPARE APPDIR #
 ##################
+
+# cleanup old appdir, if exists
+rm -rf /tmp/kivy_appdir
 
 # We use this python-appimage release as a base for building our own python
 # AppImage. We only have to add our code and depends to it.
@@ -54,7 +57,9 @@ chmod +x /tmp/python.AppImage
 mv squashfs-root /tmp/kivy_appdir
 
 # copy depends that were installed with kivy into our kivy AppDir
-rsync -a /tmp/kivy_venv/ /tmp/kivy_appdir/opt/python3.7/
+#rsync -a /tmp/kivy_venv/ /tmp/kivy_appdir/opt/python3.7/
+#/tmp/kivy_appdir/opt/python3.7/bin/python3.7 -m pip install -r requirements.txt
+/tmp/kivy_appdir/AppRun -m pip install -r requirements.txt
 
 # add our code to the AppDir
 rsync -a src /tmp/kivy_appdir/opt/
