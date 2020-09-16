@@ -11,8 +11,8 @@ set -x
 #
 # Authors: Michael Altfield <michael@buskill.in>
 # Created: 2020-06-22
-# Updated: 2020-06-22
-# Version: 0.1
+# Updated: 2020-09-17
+# Version: 0.2
 ################################################################################
 
 
@@ -20,7 +20,8 @@ set -x
 # SETTINGS #
 ############
 
-PYTHON_PATH='/usr/local/bin/python3'
+PYTHON_PATH='/usr/local/Cellar/python@3.7/3.7.8_1/bin/python3'
+PIP_PATH='/usr/local/Cellar/python@3.7/3.7.8_1/bin/pip3'
 APP_NAME='helloWorld'
 
 PYTHON_VERSION="`${PYTHON_PATH} --version | cut -d' ' -f2`"
@@ -56,15 +57,15 @@ brew reinstall sdl2 sdl2_image sdl2_ttf sdl2_mixer
 
 # setup a virtualenv to isolate our app's python depends
 sudo ${PYTHON_PATH} -m ensurepip
-${PYTHON_PATH} -m pip install --upgrade --force-reinstall --user pip setuptools
+${PIP_PATH} install --upgrade --force-reinstall --user pip setuptools
 #${PYTHON_PATH} -m pip install --upgrade --user virtualenv
 #${PYTHON_PATH} -m virtualenv /tmp/kivy_venv
 
 # install kivy and all other python dependencies with pip into our virtual env
 #source /tmp/kivy_venv/bin/activate
-${PYTHON_PATH} -m pip install --upgrade --force-reinstall --user Cython==0.29.10
-${PYTHON_PATH} -m pip install --upgrade --force-reinstall --user -r requirements.txt
-${PYTHON_PATH} -m pip install --upgrade --force-reinstall --user PyInstaller
+${PIP_PATH} install --upgrade --force-reinstall --user Cython==0.29.10 || exit 1
+${PIP_PATH} install --upgrade --force-reinstall --user -r requirements.txt || exit 1
+${PIP_PATH} install --upgrade --force-reinstall --user PyInstaller || exit 1
 
 #####################
 # PYINSTALLER BUILD #
