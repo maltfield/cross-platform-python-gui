@@ -26,8 +26,8 @@ ls -lah /usr/local/Cellar/python@3.7/3.7.8_1
 ls -lah /usr/local/Cellar/python@3.7
 find /usr/local/Cellar/python@3.7
 
-PYTHON_PATH='/usr/local/Cellar/python@3.7/3.7.8_1/bin/python3'
-PIP_PATH='/usr/local/Cellar/python@3.7/3.7.8_1/bin/pip3'
+PYTHON_PATH="`find /usr/local/Cellar/python@3.7 -type f -name python3.7 | head -n1`"
+PIP_PATH="`find /usr/local/Cellar/python@3.7 -type f -name pip3.7 | head -n1`"
 APP_NAME='helloWorld'
 
 PYTHON_VERSION="`${PYTHON_PATH} --version | cut -d' ' -f2`"
