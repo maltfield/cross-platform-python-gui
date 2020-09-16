@@ -20,6 +20,12 @@ set -x
 # SETTINGS #
 ############
 
+ls -lah /usr/local/Cellar/python@3.7/3.7.8_1/bin/python3
+ls -lah /usr/local/Cellar/python@3.7/3.7.8_1/bin/
+ls -lah /usr/local/Cellar/python@3.7/3.7.8_1
+ls -lah /usr/local/Cellar/python@3.7
+find /usr/local/Cellar/python@3.7
+
 PYTHON_PATH='/usr/local/Cellar/python@3.7/3.7.8_1/bin/python3'
 PIP_PATH='/usr/local/Cellar/python@3.7/3.7.8_1/bin/pip3'
 APP_NAME='helloWorld'
