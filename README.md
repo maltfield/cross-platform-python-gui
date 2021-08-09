@@ -23,6 +23,13 @@ Checkout our [Releases Section](https://github.com/maltfield/cross-platform-pyth
 
  * [https://github.com/maltfield/cross-platform-python-gui/releases](https://github.com/maltfield/cross-platform-python-gui/releases)
 
+# In the wild
+
+The following apps have been built by forking this repo
+
+ * [BusKill](https://github.com/buskill/buskill-app)
+ * [Kivy Matrix Calculator](https://github.com/maltfield/kivy-matrix-calculator)
+
 # License
 
 The contents of this repo are dual-licensed. All code is GPLv3 and all other content is CC-BY-SA.
