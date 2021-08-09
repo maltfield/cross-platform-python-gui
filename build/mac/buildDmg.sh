@@ -64,6 +64,10 @@ brew reinstall build/deps/sdl2_image-2.0.5.catalina.bottle.tar.gz
 brew reinstall build/deps/sdl2_mixer-2.0.4.catalina.bottle.tar.gz
 brew reinstall build/deps/sdl2_ttf-2.0.15.catalina.bottle.tar.gz
 
+# get python essential dependencies
+${PIP_PATH} install --ignore-installed --upgrade --cache-dir build/deps/ --no-index --find-links file://`pwd`/build/deps/ build/deps/pip-20.1.1-py2.py3-none-any.whl
+PIP_PATH="`find /usr/local/Cellar/python -type f -wholename *bin/pip3* | sort -n | uniq | head -n1`"
+
 # setup a virtualenv to isolate our app's python depends
 #sudo ${PYTHON_PATH} -m ensurepip
 #${PIP_PATH} install --upgrade --force-reinstall --user pip setuptools
