@@ -17,18 +17,21 @@ This project uses [kivy](https://kivy.org/), which also supports android and iOS
 
 When you push git commits to github on master, github will automatically spin up containers in the cloud and build your application's executables for all target platforms.
 
-# Try it out
+# Demos
+
+## "Hello World" App
 
 Checkout our [Releases Section](https://github.com/maltfield/cross-platform-python-gui/releases) to download and run the self-contained `Hello World` executables for Linux, Windows, and MacOS that were built by this repo.
 
  * [https://github.com/maltfield/cross-platform-python-gui/releases](https://github.com/maltfield/cross-platform-python-gui/releases)
 
-# In the wild
+## In the wild
 
 The following apps have been built by forking this repo
 
  * [BusKill](https://github.com/buskill/buskill-app)
  * [Kivy Matrix Calculator](https://github.com/maltfield/kivy-matrix-calculator)
+ * [Kivy Snake Game](https://github.com/nandanhere/cross-platform-python-gui/)
 
 # License
 
